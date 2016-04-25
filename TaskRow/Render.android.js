@@ -6,18 +6,26 @@ const {
   View,
 } = React
 
+const localStyle = React.StyleSheet.create({
+  doneButton: {
+    borderRadius: 5,
+    padding: 5
+  },
+})
+
 export default function render (styles) {
   return (
     <View style={styles.container}>
       <Text
-        style={styles.label}
-      >and: {this.props.todo.task}</Text>
+          style={styles.label}
+      >{this.props.todo.task}</Text>
 
       <TouchableHighlight
-        onPress={this.onDonePressed.bind(this)}
-        style={styles.doneButton}
+          onPress={this.onDonePressed.bind(this)}
+          style={localStyle.doneButton}
+          underlayColor='#ddd'
       >
-        <Text>Done</Text>
+        <Text>V</Text>
       </TouchableHighlight>
     </View>
   )
