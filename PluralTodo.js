@@ -31,11 +31,10 @@ class PluralTodo extends Component {
 
   onDone (todo) {
     console.log('Todo completed', todo)
-    const filteredTodos =
-      this.state.todos.filter((filterTodo) => {
-        return filterTodo !== todo
-      })
-    this.setState({ todos: filteredTodos })
+    store.dispatch({
+      type: 'DONE_TODO',
+      todo,
+    })
   }
 
   onAdd (task) {
