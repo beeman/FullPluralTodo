@@ -1,6 +1,7 @@
 import React from 'react-native'
 import TaskList from './TaskList'
 import TaskForm from './TaskForm'
+import store from './todoStore'
 
 let {
   AppRegistry,
@@ -11,13 +12,11 @@ let {
 class PluralTodo extends Component {
   constructor (props, context) {
     super(props, context)
-    this.state = {
-      todos: [ {
-        task: 'Learn React Native!',
-      }, {
-        task: 'Learn Redux!',
-      } ]
-    }
+    this.state = store.getState()
+
+    store.subscribe(() => {
+      this.setState(store.getState()) // eslint-disable-line react/no-set-state
+    })
   }
 
   onAddStarted () {
@@ -41,9 +40,10 @@ class PluralTodo extends Component {
 
   onAdd (task) {
     console.log('A task was added', task)
-    this.state.todos.push({ task })
-    console.log(this.state.todos)
-    this.setState({ todos: this.state.todos })
+    store.dispatch({
+      type: 'ADD_TODO',
+      task,
+    })
     this.nav.pop()
   }
 
