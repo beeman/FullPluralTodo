@@ -1,6 +1,7 @@
 import React from 'react-native'
 
 const {
+  Image,
   Text,
   TouchableHighlight,
   View,
@@ -25,7 +26,9 @@ export default function render (styles) {
           style={localStyle.doneButton}
           underlayColor='#ddd'
       >
-        <Text>V</Text>
+        <Image
+          source={require('../images/done.png')}
+        />
       </TouchableHighlight>
     </View>
   )
